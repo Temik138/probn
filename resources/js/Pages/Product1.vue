@@ -159,10 +159,10 @@ export default {
 .product-detail-container {
     max-width: 1200px;
     width: 100%;
-    background-color: #2c2c2c;
+    background-color: #884535;
     border-radius: 10px;
     padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: dashed 2px white;
 }
 
 .product-card-detail {
@@ -188,7 +188,6 @@ export default {
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 15px;
-    border: 1px solid #444;
 }
 
 .thumbnail-row {
@@ -221,7 +220,6 @@ export default {
     flex: 2;
     min-width: 300px;
     padding-left: 20px;
-    border-left: 1px dashed #555;
 }
 
 .title-detail {
@@ -255,8 +253,8 @@ export default {
     width: 80px;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #555;
-    background-color: #444;
+    border: dashed 2px white;
+    background-color: #884535;
     color: white;
     font-size: 18px;
     text-align: center;
@@ -271,6 +269,7 @@ export default {
     font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border: dashed 2px white;
 }
 
 .add-to-cart-button:hover {

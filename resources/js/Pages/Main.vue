@@ -11,21 +11,21 @@
         <div class="photo">
           <img src="/images/kursreact.webp" style="border-radius: 3%; height: 330px;">
           <div class="title">Курс по реакту</div>
-          <div class="price">800р</div>
+          <div class="price">800.00р</div>
         </div>
       </a>
       <a href="/products/2" class="product-btn">
         <div class="photo">
           <img src="/images/kursjs.webp" style="border-radius: 3%; height: 330px;">
           <div class="title">Курс по js</div>
-          <div class="price">570р</div>
+          <div class="price">570.00р</div>
         </div>
       </a>
       <a href="/products/3" class="product-btn">
         <div class="photo">
           <img src="/images/svadba1.png" style="border-radius: 3%;">
           <div class="title3">Шаблон свадебный</div>
-          <div class="price">190р</div>
+          <div class="price">190.00р</div>
         </div>
       </a>
     </div>
@@ -161,6 +161,8 @@ export default {
   font-size: 24px;
   font-family: "Montserrat";
   margin-top: 10px;
+  font-weight: bold;
+  color: #ffd700;
 }
 
 .slider {

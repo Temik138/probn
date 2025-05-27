@@ -3,23 +3,20 @@
         <div class="catalog">КАТАЛОГ</div>
         <div class="content-wrapper">
             <div class="products-grid">
-                <Link
-                    v-for="product in filteredProducts"
-                    :key="product.id"
-                    :href="`/products/${product.id}`"
-                    class="product-card"
-                >
-                    <div class="image-container">
-                        <img class="product-image" :src="`/images/${product.image}`">
-                    </div>
-                    <div class="product-info">
-                        <div class="title">{{ product.name }}</div>
-                        <div class="price">{{ product.price }}р</div>
-                    </div>
+                <Link v-for="product in filteredProducts" :key="product.id" :href="`/products/${product.id}`"
+                    class="product-card">
+                <div class="image-container">
+                    <img class="product-image" :src="`/images/${product.image}`">
+                </div>
+                <div class="product-info">
+                    <div class="title">{{ product.name }}</div>
+                    <div class="price">{{ product.price }}р</div>
+                </div>
                 </Link>
             </div>
             <div class="filter-container">
                 <div class="filter">
+                    <h3 class="filter-title">Категории</h3>
                     <input type="checkbox" v-model="filters.kurs" id="check-kurs" />
                     <label for="check-kurs">Курсы</label>
                     <br>
@@ -28,6 +25,20 @@
                     <br>
                     <input type="checkbox" v-model="filters.shabl" id="check-shabl" />
                     <label for="check-shabl">Шаблоны</label>
+
+                    <h3 class="filter-title">Цена</h3>
+                    <div class="price-filter">
+                        <div class="price-input">
+                            <label for="min-price">От</label>
+                            <input type="number" id="min-price" v-model.number="priceRange.min" placeholder="0" min="0"
+                                class="price-field">
+                        </div>
+                        <div class="price-input">
+                            <label for="max-price">До</label>
+                            <input type="number" id="max-price" v-model.number="priceRange.max" placeholder="0" min="0"
+                                class="price-field">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,23 +66,40 @@ export default {
                 kurs: true,
                 books: true,
                 shabl: true
+            },
+            priceRange: {
+                min: null,
+                max: null
             }
         }
     },
     computed: {
         filteredProducts() {
             if (!this.products || !Array.isArray(this.products)) return [];
+
             return this.products.filter(product => {
-                return (
+                // Проверка категории
+                const categoryMatch =
                     (this.filters.kurs && product.category === 'kurs') ||
                     (this.filters.books && product.category === 'books') ||
-                    (this.filters.shabl && product.category === 'shabl')
-                );
+                    (this.filters.shabl && product.category === 'shabl');
+
+                // Проверка цены
+                let priceMatch = true;
+                if (this.priceRange.min !== null && product.price < this.priceRange.min) {
+                    priceMatch = false;
+                }
+                if (this.priceRange.max !== null && product.price > this.priceRange.max) {
+                    priceMatch = false;
+                }
+
+                return categoryMatch && priceMatch;
             });
         }
     }
 }
 </script>
+
 
 <style scoped>
 .main-section {
@@ -185,6 +213,51 @@ export default {
     margin-top: auto;
 }
 
+.filter {
+    padding: 20px;
+    border: dashed 2px white;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.price-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.price-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.price-input label {
+    width: 30px;
+    flex-shrink: 0;
+}
+
+.price-field {
+    width: 100%;
+    max-width: calc(100% - 40px);
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #884535;
+    color: white;
+    font-family: "Montserrat";
+    box-sizing: border-box;
+    border: dashed 2px white;
+}
+
+.price-field:focus {
+    outline: none;
+    border-color: #ffd700;
+}
+
 @media (max-width: 1200px) {
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -211,26 +284,45 @@ export default {
     .products-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .product-card {
         flex-direction: row;
         align-items: center;
         gap: 15px;
     }
-    
+
     .image-container {
         min-height: auto;
         margin-bottom: 0;
         flex: 0 0 120px;
     }
-    
+
     .product-info {
         align-items: flex-start;
         text-align: left;
     }
-    
-    .title, .price {
+
+    .title,
+    .price {
         text-align: left;
+    }
+
+    @media (max-width: 600px) {
+        .price-filter {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .price-input {
+            flex: 1 1 calc(50% - 5px);
+            /* 50% ширины минус половина gap */
+            min-width: 0;
+            /* Разрешаем сжатие */
+        }
+
+        .price-field {
+            max-width: none;
+        }
     }
 }
 </style>

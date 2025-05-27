@@ -133,10 +133,9 @@ export default {
 .cart-container {
     max-width: 1000px;
     width: 100%;
-    background-color: #2c2c2c;
+    background-color: #884535;
     border-radius: 10px;
     padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cart-title {
@@ -160,11 +159,11 @@ export default {
 .cart-item {
     display: flex;
     align-items: center;
-    background-color: #3a3a3a;
+    background-color: #884535;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: dashed 2px white;
 }
 
 .cart-item-image {
@@ -214,10 +213,11 @@ export default {
 
 .quantity-input {
     width: 70px;
+    height: 30px;
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #555;
-    background-color: #444;
+    border: dashed 2px white;
+    background-color: #884535;
     color: white;
     font-size: 16px;
     text-align: center;
@@ -242,14 +242,14 @@ export default {
 .cart-summary {
     flex: 1; /* Занимает оставшуюся часть ширины */
     min-width: 250px; /* Минимальная ширина для сводки */
-    background-color: #3a3a3a;
+    background-color: #884535;
     border-radius: 8px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: dashed 2px white;
     height: fit-content; /* Чтобы не растягивался на всю высоту */
 }
 
@@ -281,14 +281,14 @@ export default {
 }
 
 .continue-shopping {
-    color: #007bff;
+    color: white;
     text-decoration: none;
     font-size: 16px;
     transition: color 0.2s ease;
 }
 
 .continue-shopping:hover {
-    color: #0056b3;
+    color: white;
 }
 
 .empty-cart-message {
